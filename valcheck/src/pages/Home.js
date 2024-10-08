@@ -17,13 +17,6 @@ function Home() {
         <h2>Presentation</h2>
         <p>Our system uses advanced neural networks to accurately recognize handwritten digits.</p>
       </div>
-      <div className={`examples  ${theme}`}>
-        <h2>Examples</h2>
-        <div className="example-images">
-          <img src="/path/to/animated-image1.gif" alt="Example 1" />
-          <img src="/path/to/animated-image2.gif" alt="Example 2" />
-        </div>
-      </div>
     </div>
   );
 }

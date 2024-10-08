@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useTheme } from '../components/ThemeContext';
-import './Recognizer.css';
+import './Valchecker.css';
 
-function Recognizer() {
+function Valchecker() {
   const { theme } = useTheme();
   const [result, setResult] = useState(null);
   const canvasRef = useRef(null);
@@ -20,7 +20,7 @@ function Recognizer() {
   };
 
   return (
-    <div className={`recognizer ${theme}`}>
+    <div className={`valchecker ${theme}`}>
       <h2>Draw a Digit</h2>
       <canvas ref={canvasRef} width="280" height="280" />
       <div className="button-group">
@@ -32,4 +32,4 @@ function Recognizer() {
   );
 }
 
-export default Recognizer;
+export default Valchecker;

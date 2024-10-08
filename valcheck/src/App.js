@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Recognizer from './pages/Recognizer';
+import Valchecker from './pages/Valchecker';
 import About from './pages/About';
 import { ThemeProvider } from './components/ThemeContext';
 import './App.css';
@@ -17,7 +17,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/recognizer" element={<Recognizer />} />
+              <Route path="/valchecker" element={<Valchecker />} />
               <Route path="/about" element={<About />} />
             </Routes>
           </main>

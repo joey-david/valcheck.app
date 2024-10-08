@@ -46,17 +46,6 @@
 /* EXPLANATION */
 
   .explanation {
-    background-color: var(--secondary-background-light);
+    background-color: var(--primary-background-light);
     padding: 2rem;
   }
-
-/* EXAMPLES */
-
-  .examples {
-    display: flex;
-    background-color: var(--primary-background-light);
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    padding: 2rem;
-  } 
