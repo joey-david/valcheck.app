@@ -20,14 +20,14 @@ function App() {
             setIsDropdownOpen={setIsDropdownOpen}
           />
           {isDropdownOpen && <div className="page-overlay"></div>}
-          <main className={isDropdownOpen ? 'blurred' : ''}>
+          <main className={isDropdownOpen ? 'greyed' : ''}>
             <Routes>
               <Route path="/home" element={<Home />} />
               <Route path="/valchecker" element={<Valchecker />} />
               <Route path="/about" element={<About />} />
             </Routes>
           </main>
-          <Footer className={isDropdownOpen ? 'blurred' : ''} />
+          <Footer className={isDropdownOpen ? 'greyed' : ''} />
         </div>
       </Router>
     </ThemeProvider>

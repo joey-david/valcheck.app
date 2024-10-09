@@ -40,9 +40,9 @@
   position: relative;
 }
 
-.blurred {
-  filter: blur(5px);
-  transition: filter 0.3s ease-out;
+.greyed {
+  filter: brightness(0.8) blur(1px);
+  transition: filter 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .App-link {

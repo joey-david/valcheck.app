@@ -7,6 +7,11 @@
     /* padding: 2rem; */
     height: auto;
   }
+
+  .home h1 {
+    font-family: 'Kanit';
+    font-weight: 500;
+  }
   
   .presentation {
     display: flex;
@@ -14,7 +19,7 @@
     align-items: center;
     gap: 1rem;
     padding: 2rem;
-    background-color: var(--secondary-background-light);
+    background-color: var(--header-color);
   }
 
   .home h1 {

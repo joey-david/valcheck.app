@@ -9,7 +9,7 @@ function Home() {
   return (
     <div className={`home ${theme}`}>
       <div className={`presentation  ${theme}`}>
-        <h1>Welcome to Handwritten Digit Recognizer</h1>
+        <h1>valcheck.ai</h1>
         <p>Discover the power of machine learning in recognizing handwritten digits.</p>
         <Link to="/valchecker" className="cta-button">Try It Now</Link>
       </div>  

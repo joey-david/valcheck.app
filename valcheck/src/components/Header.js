@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
 import ThemeToggle from './ThemeToggle';
+import DropdownArrow from './DropdownArrow';
 import './Header.css';
 
 function Header({ isDropdownOpen, setIsDropdownOpen }) {
@@ -9,7 +10,7 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
-    document.documentElement.style.setProperty('--header-color', theme === 'dark' ? 'black' : 'white');
+    document.documentElement.style.setProperty('--header-color', theme === 'dark' ? 'black' : '#F5F3F5');
   }, [theme]);
 
   const handleDropdownEnter = (index) => {
@@ -32,24 +33,20 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
   return (
     <header className={`header ${theme}`}>
       <div className="logo_div">
-        <img src="/img/logo.png" alt="valcheck.ai" id="logo"/>
+        <img src="" alt="valcheck.ai" id="logo"/>
       </div>
       <div className="links-div">
         {dropdownLinks.map((link, index) => (
           <div
             key={index}
-            className="dropdown"
-            onMouseEnter={() => handleDropdownEnter(index)}
-            onMouseLeave={handleDropdownLeave}
+            className={`dropdown ${link.items.length > 0 ? 'has-items' : ''}`}
+            onMouseEnter={() => link.items.length > 0 && handleDropdownEnter(index)}
+            onMouseLeave={link.items.length > 0 ? handleDropdownLeave : null}
           >
             <a href={link.href} className="dropdown-link">
               {link.title}
               {link.items.length > 0 && (
-                <img
-                  src="/img/dropdown-arrow.png"
-                  alt="dropdown arrow"
-                  className={`dropdown-arrow ${openDropdown === index ? 'open' : ''}`}
-                />
+                <DropdownArrow isOpen={openDropdown === index} />
               )}
             </a>
             {link.items.length > 0 && (

@@ -1,21 +1,21 @@
 @import "../index.css";
 
 .header {
-    padding: 0 0.5rem 0 1.5rem;
+    align-items: center;
+    background-color: var(--header-color);
+    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
+    color: rgb(95, 95, 95);
+    display: flex;
     font-family: Lato;
     font-size: large;
-    color: rgb(95, 95, 95);
     font-weight: 600;
-    position: sticky;
-    top: 0;
-    display: flex;
     height: 4.5rem;
     justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
-    background-color: var(--header-color);
+    padding: 0 0.5rem 0 1.5rem;
+    position: sticky;
+    top: 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
     z-index: 10;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark theme styles */
@@ -43,9 +43,16 @@
 
 #logo {
     align-self: left;
+    font-family: Kanit;
+    font-size: x-large;
+    color: black;
     height: 4rem;
     display: flex;
     align-items: center;
+}
+
+.dark #logo {
+    color: white;
 }
 
 .links-div {
@@ -66,8 +73,7 @@
 }
 
 .dropdown-arrow {
-    height: 15px;
-    margin-left: 6px;
+    height: 25px;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -78,14 +84,13 @@
 .dropdown-link {
     flex: 1;
     height: inherit;
-    padding: 0.5rem 1rem;
     background-color: var(--header-color);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     z-index: 10;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .dark .dropdown-link {
@@ -115,7 +120,7 @@
 }
 
 .dropdown-list a {
-    padding: 12px 16px;
+    padding: 12px 0px;
     text-decoration: none;
     display: block;
     transition: color 0.3s ease;
