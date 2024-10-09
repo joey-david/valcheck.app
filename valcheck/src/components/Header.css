@@ -1,7 +1,7 @@
 @import "../index.css";
 
 .header {
-    padding: 0 2rem;
+    padding: 0 0.5rem 0 1.5rem;
     font-family: Lato;
     font-size: large;
     color: rgb(95, 95, 95);
@@ -15,6 +15,14 @@
     box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
     background-color: var(--header-color);
     z-index: 10;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme styles */
+.dark .header {
+    background-color: black;
+    color: rgb(107, 107, 107);
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
 .logo-div {
@@ -29,50 +37,63 @@
     color: black;
 }
 
+.dark .link:hover, .dark .dropdown-link:hover {
+    color: white;
+}
+
 #logo {
+    align-self: left;
     height: 4rem;
     display: flex;
     align-items: center;
 }
 
 .links-div {
-  display: flex; /* Change to flex for row alignment */
-  flex-direction: row; /* Keep items in a row */
-  align-items: center; /* Align items vertically center */
-  width: 50vw; /* Set width */
-  height: inherit; /* Inherit height if necessary */
+    align-self: flex-end;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    width: 40vw;
+    height: inherit;
 }
 
 /* DROPDOWN STYLES */
 .dropdown {
-  flex: 1;
-  position: relative;
-  height: inherit;
+    flex: 1;
+    position: relative;
+    height: inherit;
 }
 
 .dropdown-arrow {
-  height: 15px;
-  margin-left: 6px;
-  transition: transform 0.2s ease-in-out;
+    height: 15px;
+    margin-left: 6px;
+    transition: transform 0.2s ease-in-out;
 }
 
 .dropdown-arrow.open {
-  transform: scaleY(-1);
+    transform: scaleY(-1);
 }
 
 .dropdown-link {
-  flex: 1;
-  height: inherit;
-  padding: 0.5rem 1rem;
-  background-color: var(--header-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 10;
+    flex: 1;
+    height: inherit;
+    padding: 0.5rem 1rem;
+    background-color: var(--header-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-  .dropdown-list {
+.dark .dropdown-link {
+    background-color: black;
+    color: gray;
+}
+
+.dropdown-list {
     position: absolute;
     display: block;
     left: 0;
@@ -82,48 +103,53 @@
     border-radius: 0 0 8px 8px;
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
     opacity: 0;
-    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.3s ease;
     transform: translateY(-100%);
     pointer-events: auto;
     z-index: 9;
-  }
+}
 
-  .dropdown-list a {
+.dark .dropdown-list {
+    background-color: black;
+    box-shadow: 0 5px 5px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-list a {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
+    transition: color 0.3s ease;
+}
 
-  /* Show dropdown when active */
-  .dropdown:hover .dropdown-list {
+.dark .dropdown-list a {
+    color: gray;
+}
+
+/* Show dropdown when active */
+.dropdown:hover .dropdown-list {
     opacity: 1;
     transform: translateY(0);
-  }
-  
-  
+}
+
 /* Overlay for greying out the page */
 .page-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
 }
 
 .dropdown-menu:hover ~ .page-overlay {
-  display: block;
+    display: block;
 }
 
 .theme-toggle {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.dark .header {
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

@@ -15,19 +15,19 @@ function App() {
     <ThemeProvider>
       <Router>
         <div className="App">
-          <Header 
-            isDropdownOpen={isDropdownOpen} 
-            setIsDropdownOpen={setIsDropdownOpen} 
+          <Header
+            isDropdownOpen={isDropdownOpen}
+            setIsDropdownOpen={setIsDropdownOpen}
           />
           {isDropdownOpen && <div className="page-overlay"></div>}
-          <main>
+          <main className={isDropdownOpen ? 'blurred' : ''}>
             <Routes>
               <Route path="/home" element={<Home />} />
               <Route path="/valchecker" element={<Valchecker />} />
               <Route path="/about" element={<About />} />
             </Routes>
           </main>
-          <Footer />
+          <Footer className={isDropdownOpen ? 'blurred' : ''} />
         </div>
       </Router>
     </ThemeProvider>

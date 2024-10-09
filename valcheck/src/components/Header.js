@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
 import ThemeToggle from './ThemeToggle';
@@ -8,10 +8,15 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
   const { theme, toggleTheme } = useTheme();
   const [openDropdown, setOpenDropdown] = useState(null);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty('--header-color', theme === 'dark' ? 'black' : 'white');
+  }, [theme]);
+
   const handleDropdownEnter = (index) => {
     setIsDropdownOpen(true);
     setOpenDropdown(index);
   };
+
   const handleDropdownLeave = () => {
     setIsDropdownOpen(false);
     setOpenDropdown(null);
@@ -31,10 +36,10 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
       </div>
       <div className="links-div">
         {dropdownLinks.map((link, index) => (
-          <div 
+          <div
             key={index}
-            className="dropdown" 
-            onMouseEnter={() => handleDropdownEnter(index)} 
+            className="dropdown"
+            onMouseEnter={() => handleDropdownEnter(index)}
             onMouseLeave={handleDropdownLeave}
           >
             <a href={link.href} className="dropdown-link">
