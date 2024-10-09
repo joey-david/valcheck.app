@@ -14,7 +14,7 @@
     align-items: center;
     gap: 1rem;
     padding: 2rem;
-    background-color: var(--primary-background-light);
+    background-color: var(--secondary-background-light);
   }
 
   .home h1 {
