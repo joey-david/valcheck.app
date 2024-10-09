@@ -1,0 +1,102 @@
+.btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-container i {
+    margin: 0 12px; /* Increased by 20% */
+    font-size: 21.6px; /* Increased by 20% */
+    color: #777;
+    transition: all 0.3s ease;
+}
+
+.btn-container i.active {
+    color: #ffa500;
+    text-shadow: 0px 0px 19.2px #ffa500; /* Increased by 20% */
+}
+
+.btn-container i.moon.active {
+    color: #ffffff;
+    text-shadow: 0px 0px 20px #ffffff; /* Increased by 20% */
+}
+
+.btn-color-mode-switch {
+    display: inline-block;
+    margin: 0px;
+    position: relative;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner {
+    margin: 0px;
+    width: 168px; /* Increased by 20% */
+    height: 36px; /* Increased by 20% */
+    background: #E0E0E0;
+    border-radius: 31.2px; /* Increased by 20% */
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:before {
+    content: attr(data-on);
+    position: absolute;
+    font-size: 14.4px; /* Increased by 20% */
+    font-weight: 500;
+    top: 8.4px; /* Increased by 20% */
+    right: 24px; /* Increased by 20% */
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:after {
+    content: attr(data-off);
+    width: 84px; /* Increased by 20% */
+    height: 19.2px; /* Increased by 20% */
+    background: #fff;
+    border-radius: 31.2px; /* Increased by 20% */
+    position: absolute;
+    left: 2.4px; /* Increased by 20% */
+    top: 2.4px; /* Increased by 20% */
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 7.2px -2.4px #111; /* Increased by 20% */
+    padding: 6px 0px; /* Increased by 20% */
+    font-size: 14.4px; /* Increased by 20% */
+    font-weight: 00;
+    line-height: 19.2px; /* Increased by 20% */
+}
+
+.btn-color-mode-switch input[type="checkbox"] {
+    cursor: pointer;
+    width: 60px; /* Increased by 20% */
+    height: 30px; /* Increased by 20% */
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    margin: 0px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner {
+    background: #151515;
+    color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after {
+    content: attr(data-on);
+    left: 81.6px; /* Increased by 20% */
+    background: #3c3c3c;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before {
+    content: attr(data-off);
+    right: auto;
+    left: 24px; /* Increased by 20% */
+}
+
+/* Ensure consistent text appearance */
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:before,
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:after {
+    font-size: 14.4px; /* Increased by 20% */
+    line-height: 19.2px; /* Increased by 20% */
+}

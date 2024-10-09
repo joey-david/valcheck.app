@@ -14,3 +14,6 @@ implement
 
 add to resume:
 transformer models, foundation models, generative models, or graph neutral networks
+
+
+toggle switch: https://github.com/NadeeshaEranjan/realistic-toggle-switch

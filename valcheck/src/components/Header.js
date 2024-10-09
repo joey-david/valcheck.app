@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
+import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
 function Header({ isDropdownOpen, setIsDropdownOpen }) {
   const { theme, toggleTheme } = useTheme();
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-  const handleDropdownEnter = () => setIsDropdownOpen(true);
-  const handleDropdownLeave = () => setIsDropdownOpen(false);
+  const handleDropdownEnter = (index) => {
+    setIsDropdownOpen(true);
+    setOpenDropdown(index);
+  };
+  const handleDropdownLeave = () => {
+    setIsDropdownOpen(false);
+    setOpenDropdown(null);
+  };
 
   const dropdownLinks = [
     { title: "Home page", href: "/home", items: [] },
@@ -26,7 +34,7 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
           <div 
             key={index}
             className="dropdown" 
-            onMouseEnter={handleDropdownEnter} 
+            onMouseEnter={() => handleDropdownEnter(index)} 
             onMouseLeave={handleDropdownLeave}
           >
             <a href={link.href} className="dropdown-link">
@@ -34,8 +42,8 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
               {link.items.length > 0 && (
                 <img
                   src="/img/dropdown-arrow.png"
-                  alt="v"
-                  className={`dropdown-arrow ${isDropdownOpen ? 'open' : ''}`}
+                  alt="dropdown arrow"
+                  className={`dropdown-arrow ${openDropdown === index ? 'open' : ''}`}
                 />
               )}
             </a>
@@ -49,11 +57,7 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
           </div>
         ))}
       </div>
-      <div className="theme-toggle-div">
-        <button onClick={toggleTheme} className="theme-toggle">
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
-      </div>
+      <ThemeToggle />
     </header>
   );
 }
