@@ -7,11 +7,11 @@
     color: rgb(95, 95, 95);
     display: flex;
     font-family: Lato;
-    font-size: large;
+    font-size: medium;
     font-weight: 600;
     height: 4.5rem;
     justify-content: space-between;
-    padding: 0 0.5rem 0 1.5rem;
+    padding: 0 6rem 0 6rem;
     position: sticky;
     top: 0;
     transition: background-color 0.5s ease, color 0.5s ease;
@@ -56,12 +56,14 @@
 }
 
 .links-div {
-    align-self: flex-end;
+    align-self: center;
     margin-left: auto;
     display: flex;
     flex-direction: row;
-    align-items: right;
-    width: 40vw;
+    align-items: center;
+    justify-content: space-around;
+    /* align-items: right; */
+    width: 30vw;
     height: inherit;
 }
 
