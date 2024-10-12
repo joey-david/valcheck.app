@@ -2,16 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
-  --header-color: #F5F3F5;
-  --secondary-color: #555e5e;
-  --primary-background-light: #F5F3F5;
-  --primary-text-light: black;
-  --primary-background-dark: #302546;
-  --primary-text-dark: #E0E2DB;
-  --secondary-background-light: #white;
-  --secondary-text-light: rgb(59, 59, 59);
-  --secondary-background-dark: #302546;
-  --secondary-text-dark: #B8BDB5;
+  --light-background-color: #F5F3F5;
+  --dark-background-color: #1E1E1E; 
+  --edge-padding: 5vw;
 }
 
 * {

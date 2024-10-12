@@ -3,7 +3,7 @@
 .header {
     align-items: center;
     background-color: var(--header-color);
-    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2); */
     color: rgb(95, 95, 95);
     display: flex;
     font-family: Lato;
@@ -11,10 +11,10 @@
     font-weight: 600;
     height: 4.5rem;
     justify-content: space-between;
-    padding: 0 6rem 0 6rem;
+    padding: 0 var(--edge-padding) 0 var(--edge-padding);
     position: sticky;
     top: 0;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     z-index: 10;
 }
 
@@ -45,6 +45,7 @@
     align-self: left;
     font-family: Kanit;
     font-size: x-large;
+    font-weight: 500;
     color: black;
     height: 4rem;
     display: flex;
@@ -92,7 +93,7 @@
     justify-content: center;
     position: relative;
     z-index: 10;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark .dropdown-link {
