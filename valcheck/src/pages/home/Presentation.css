@@ -2,7 +2,7 @@
     display: flex;
     background-color: var(--light-background-color);
     color: var(--primary-color);
-    height: 60vh;
+    height: 90vh;
     padding: 0 var(--edge-padding) 0 var(--edge-padding);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -15,7 +15,7 @@
 /* TITLE AND SUBTITLE */
 .title-subtitle {
     display: flex;
-    width: 35vw;
+    width: 45vw;
     height: inherit;
     flex-direction: column;
     justify-content: center;
@@ -40,7 +40,7 @@
     justify-content: center;
     align-items: center;
     height: inherit;
-    width: 55vw;
+    width: 45vw;
 }
 
 .main-button {

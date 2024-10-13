@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import DropdownArrow from './DropdownArrow';

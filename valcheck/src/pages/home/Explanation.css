@@ -2,7 +2,7 @@
 .explanation {
     height: auto;
     background-color: var(--light-background-color);
-    padding: 2rem;
+    padding: var(--edge-padding);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -11,10 +11,7 @@
     color: white;
 }
 
-.explanation-section {
-    margin-bottom: 2rem;
-    text-align: left;
-}
+/* TITLES */
 
 .explanation h2 {
     font-size: 2.5rem;
@@ -32,16 +29,151 @@
     margin-bottom: 0.5rem;
 }
 
+
+/* DEFAULT PARAGRAPHS */
+
 .explanation p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font: 'Lato';
+    text-align: justify;
+    width: 45vw;
+}
+
+.explanation #p-left {
+    padding-right: 2rem;
+}
+
+.explanation #p-right {
+    padding-left: 2rem;
+}
+
+/* IMAGES AND GIFS */
+
+.explanation img {
+    max-height: 100%;
+    border-radius: 8px;
+}
+
+/* INDIVIDUAL SYMBOL RECOGNITION */
+.individual-symbol-recognition-section {
+    margin-bottom: 2rem;
+}
+
+.individual-symbol {
+    display: flex;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
-.placeholder-image {
-    max-width: 100%;
+/* NEURAL NETWORK */
+
+.neural-net-gif {
+    width: 45vw;
     height: auto;
-    margin: 1rem 0;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* DATASET */
+
+.dataset-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.dataset-gif {
+    width: auto;
+    padding: 0 5rem;
+    height: 25vw;
+    border-radius: 8px;
+    margin-left: 2rem;
+}
+
+/* TECHNOLOGIES USED */
+
+.libraries-div {
+    display: flex;
+    align-items: center;
+}
+
+#pytorch-p {
+    width: 45vw;
+    padding-right: 2rem;
+}
+
+.pytorch-logo {
+    height: 7rem;
+    padding: 35px 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+#flask-p {
+    width: 45vw;
+    padding-left: 2rem;
+}
+
+.flask-logo {
+    height: 7rem;
+    padding: 0px 10px;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+/* BUILDING EXPRESSIONS */
+.building-expressions-section {
+    margin-bottom: 2rem;
+}
+
+.building-expressions {
+    display: flex;
+    align-items: center;
+}
+
+.equation-solving-gif {
+    height: auto;
+    border-radius: 8px;
+    align-self: end;
+}
+
+/* EVALUATING EXPRESSIONS */
+.evaluating-expressions-section {
+    margin-bottom: 2rem;
+}
+
+.evaluating-expressions {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.evaluating-expressions p {
+    padding-left: 2rem;
+}
+
+.wolfram-alpha-gif {
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .individual-symbol,
+    .dataset-section,
+    .building-expressions,
+    .evaluating-expressions {
+        flex-direction: column;
+    }
+
+    .individual-symbol p,
+    .dataset-section p,
+    .building-expressions p,
+    .evaluating-expressions p,
+    .neural-net-gif,
+    .dataset-gif,
+    .equation-solving-gif,
+    .wolfram-alpha-gif {
+        width: 100%;
+        padding: 0;
+        margin: 1rem 0;
+    }
 }
