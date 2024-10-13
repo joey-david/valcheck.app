@@ -1,0 +1,11 @@
+@import "../../index.css";
+
+.home {
+    text-align: center;
+    height: auto;
+}
+
+.home h1 {
+    font-family: 'Kanit';
+    font-weight: 500;
+}
