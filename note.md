@@ -17,3 +17,5 @@ transformer models, foundation models, generative models, or graph neutral netwo
 
 
 toggle switch: https://github.com/NadeeshaEranjan/realistic-toggle-switch
+
+tie the home links to header, fix pointer on theme toggle, fix light mode button, adapt mode to user pref, write js/css for digit drawing, tie links, write js/css for about me, tie links
