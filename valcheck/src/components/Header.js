@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from './ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import DropdownArrow from './DropdownArrow';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom for internal routing
 import './Header.css';
 
 function Header({ isDropdownOpen, setIsDropdownOpen }) {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
@@ -22,41 +23,76 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
     setOpenDropdown(null);
   };
 
-  const dropdownLinks = [
-    { title: "Home page", href: "/home", items: [] },
-    { title: "How it works", href: "/", items: ["symbol recognition", "expression elaboration", "expression evaluation"] },
-    { title: "How to use it", href: "/valchecker", items: ["examples", "use it"] },
-    { title: "Who made it", href: "/about", items: ["the developer", "more about valcheck.ai"] },
-  ];
-
   return (
     <header className={`header ${theme}`}>
       <div className="logo_div">
         <img src="" alt="valcheck.ai" id="logo"/>
       </div>
       <div className="links-div">
-        {dropdownLinks.map((link, index) => (
-          <div
-            key={index}
-            className={`dropdown ${link.items.length > 0 ? 'has-items' : ''}`}
-            onMouseEnter={() => link.items.length > 0 && handleDropdownEnter(index)}
-            onMouseLeave={link.items.length > 0 ? handleDropdownLeave : null}
-          >
-            <a href={link.href} className="dropdown-link">
-              {link.title}
-              {link.items.length > 0 && (
-                <DropdownArrow isOpen={openDropdown === index} />
-              )}
-            </a>
-            {link.items.length > 0 && (
-              <div className="dropdown-list">
-                {link.items.map((item, itemIndex) => (
-                  <a key={itemIndex} href={`${link.href}/section-${itemIndex + 1}`} className="link">{item}</a>
-                ))}
-              </div>
-            )}
+        <div
+          className="dropdown" id="home-dropdown"
+        >
+          <Link to="/home" className="dropdown-link">
+            Home
+          </Link>
+        </div>
+        <div
+          className="dropdown has-items"
+          onMouseEnter={() => handleDropdownEnter(1)}
+          onMouseLeave={handleDropdownLeave}
+        >
+          <Link to="/home/how-it-works" className="dropdown-link">
+            How it works
+            <DropdownArrow isOpen={openDropdown === 1} />
+          </Link>
+          <div className="dropdown-list">
+            <Link to="/home/individual-symbol-recognition" className="link">
+              Symbol Recognition
+            </Link>
+            <Link to="/home/building-expressions" className="link">
+              Expression Elaboration
+            </Link>
+            <Link to="/home/evaluating-expressions" className="link">
+              Expression Evaluation
+            </Link>
           </div>
-        ))}
+        </div>
+        <div
+          className="dropdown has-items"
+          onMouseEnter={() => handleDropdownEnter(2)}
+          onMouseLeave={handleDropdownLeave}
+        >
+          <Link to="/valchecker" className="dropdown-link">
+            How to use it
+            <DropdownArrow isOpen={openDropdown === 2} />
+          </Link>
+          <div className="dropdown-list">
+            <Link to="/valchecker/examples" className="link">
+              Examples
+            </Link>
+            <Link to="/valchecker/use-it" className="link">
+              Use It
+            </Link>
+          </div>
+        </div>
+        <div
+          className="dropdown has-items"
+          onMouseEnter={() => handleDropdownEnter(3)}
+          onMouseLeave={handleDropdownLeave}
+        >
+          <Link to="/about" className="dropdown-link">
+            Who made it
+            <DropdownArrow isOpen={openDropdown === 3} />
+          </Link>
+          <div className="dropdown-list">
+            <Link to="/about/developer" className="link">
+              The Developer
+            </Link>
+            <Link to="/about/more-valcheck" className="link">
+              More about valcheck.ai
+            </Link>
+          </div>
+        </div>
       </div>
       <ThemeToggle />
     </header>

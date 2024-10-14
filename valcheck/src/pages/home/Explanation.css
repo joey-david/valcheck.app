@@ -4,11 +4,21 @@
     background-color: var(--light-background-color);
     padding: var(--edge-padding);
     transition: background-color 0.3s ease, color 0.3s ease;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .dark .explanation {
     background-color: black;
     color: white;
+}
+
+.explanation .content {
+    width: 60rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 /* TITLES */
@@ -49,13 +59,17 @@
 /* IMAGES AND GIFS */
 
 .explanation img {
-    max-height: 100%;
+    height: auto;
+    max-width: 50%;
     border-radius: 8px;
 }
 
 /* INDIVIDUAL SYMBOL RECOGNITION */
 .individual-symbol-recognition-section {
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .individual-symbol {
@@ -82,7 +96,6 @@
 
 .dataset-gif {
     width: auto;
-    padding: 0 5rem;
     height: 25vw;
     border-radius: 8px;
     margin-left: 2rem;
@@ -91,13 +104,20 @@
 /* TECHNOLOGIES USED */
 
 .libraries-div {
+    width: inherit;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to allow vertical scrolling if needed */
+    overflow: auto; /* Allow scrolling if content overflows */
+}
+
+.pytorch-div, .flask-div {
+    flex: 1;
+    min-width: 0; /* Allows flex items to shrink below their minimum content size */
 }
 
 #pytorch-p {
-    width: 45vw;
     padding-right: 2rem;
+    max-width: fit-content;
 }
 
 .pytorch-logo {
@@ -105,11 +125,12 @@
     padding: 35px 25px;
     border-radius: 15px;
     border: 2px solid black;
+    max-width: 100%; /* Ensure image doesn't overflow its container */
 }
 
 #flask-p {
-    width: 45vw;
     padding-left: 2rem;
+    max-width: fit-content;
 }
 
 .flask-logo {
@@ -117,6 +138,7 @@
     padding: 0px 10px;
     border-radius: 15px;
     border: 2px solid black;
+    max-width: 100%; /* Ensure image doesn't overflow its container */
 }
 
 /* BUILDING EXPRESSIONS */

@@ -7,9 +7,9 @@ function Explanation() {
 
   return (
     <div className={`explanation ${theme}`}>
-      <div className='content'>
+      <div className='content' id="#home/how-it-works">
         <h2>How it works</h2>
-        <section className="individual-symbol-recognition-section">
+        <section id="individual-symbol-recognition" className="individual-symbol-recognition-section">
           <h3>I. Individual Symbol Recognition</h3>
           <h4>Neural Network</h4>
           <div className="individual-symbol">
