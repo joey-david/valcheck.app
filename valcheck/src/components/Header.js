@@ -32,29 +32,29 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
         <div
           className="dropdown" id="home-dropdown"
         >
-          <Link to="/home" className="dropdown-link">
+          <a href="/home" className="dropdown-link">
             Home
-          </Link>
+          </a>
         </div>
         <div
           className="dropdown has-items"
           onMouseEnter={() => handleDropdownEnter(1)}
           onMouseLeave={handleDropdownLeave}
         >
-          <Link to="/home/how-it-works" className="dropdown-link">
+          <a href="/home#how-it-works" className="dropdown-link">
             How it works
             <DropdownArrow isOpen={openDropdown === 1} />
-          </Link>
+          </a>
           <div className="dropdown-list">
-            <Link to="/home/individual-symbol-recognition" className="link">
+            <a href="/home#individual-symbol-recognition" className="link">
               Symbol Recognition
-            </Link>
-            <Link to="/home/building-expressions" className="link">
+            </a>
+            <a href="/home#building-expressions" className="link">
               Expression Elaboration
-            </Link>
-            <Link to="/home/evaluating-expressions" className="link">
+            </a>
+            <a href="/home#evaluating-expressions" className="link">
               Expression Evaluation
-            </Link>
+            </a>
           </div>
         </div>
         <div

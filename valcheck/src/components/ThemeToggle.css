@@ -39,6 +39,7 @@
     position: relative;
     transition: all 0.3s ease;
     display: block;
+    cursor: pointer; /* Added this line */
 }
 
 .btn-color-mode-switch > label.btn-color-mode-switch-inner:before {

@@ -7,7 +7,7 @@ function Explanation() {
 
   return (
     <div className={`explanation ${theme}`}>
-      <div className='content' id="#home/how-it-works">
+      <div className='content' id="how-it-works">
         <h2>How it works</h2>
         <section id="individual-symbol-recognition" className="individual-symbol-recognition-section">
           <h3>I. Individual Symbol Recognition</h3>
@@ -37,14 +37,14 @@ function Explanation() {
             </div>
           </div>
         </section>
-        <section className="building-expressions-section">
+        <section id="building-expressions" className="building-expressions-section">
           <h3>II. Building Expressions</h3>
           <div className="building-expressions">
             <p id='p-left'>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <img src="./gif/equation-solving-placeholder.gif" alt="Expression building process" className="equation-solving-gif" />
           </div>
         </section>
-        <section className="evaluating-expressions-section">
+        <section id="evaluating-expressions" className="evaluating-expressions-section">
           <h3>III. Evaluating Expressions and other implementations</h3>
           <div className="evaluating-expressions">
             <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
