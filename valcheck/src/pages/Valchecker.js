@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useTheme } from '../components/ThemeContext';
+import ThreeSwitch from '../components/ThreeSwitch';
 import './Valchecker.css';
 
 function Valchecker() {
@@ -15,19 +16,28 @@ function Valchecker() {
 
   const recognizeDigit = () => {
     // Here you would implement the logic to send the canvas data to your Flask backend
-    // and receive the recognition result
+    // and receive the recognition resul
     setResult("Recognized digit: 5"); // Placeholder result
   };
 
   return (
     <div className={`valchecker ${theme}`}>
-      <h2>Draw a Digit</h2>
-      <canvas ref={canvasRef} width="280" height="280" />
-      <div className="button-group">
-        <button onClick={clearCanvas}>Clear</button>
-        <button onClick={recognizeDigit}>Recognize</button>
+      <div className='top-bar'>
+        <div className="logo-text">
+          <img src="" alt="valcheck.ai" id="logo"/>
+        </div>
+        <div className="triple-switch">
+          <ThreeSwitch />
+        </div>
       </div>
-      {result && <p className="result">{result}</p>}
+      <div className='canvas-section'>
+        <canvas ref={canvasRef} width="200" height="200"></canvas>
+        <div className='button-section'>
+          <button onClick={clearCanvas}>Clear</button>
+          <button onClick={recognizeDigit}>Recognize</button>
+        </div>
+        {result && <p className='result'>{result}</p>}
+      </div>
     </div>
   );
 }

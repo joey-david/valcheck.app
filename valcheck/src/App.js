@@ -22,6 +22,7 @@ function App() {
           {isDropdownOpen && <div className="page-overlay"></div>}
           <main className={isDropdownOpen ? 'greyed' : ''}>
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/valchecker" element={<Valchecker />} />
               <Route path="/about" element={<About />} />

@@ -1,47 +1,39 @@
 @import "../index.css";
 
-.recognizer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
+.valchecker {
+  height: auto;
+  background-color: var(--light-background-color);
+  padding: 0 var(--edge-padding);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.top-bar {
+  /* padding: 0 6rem; */
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo-text {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triple-switch {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
-  .recognizer h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-  }
+
   
-  .recognizer canvas {
-    border: 2px solid var(--primary-color);
-    border-radius: 4px;
-    margin-bottom: 1rem;
-  }
-  
-  .button-group {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .button-group button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button-group button:hover {
-    background-color: var(--secondary-color);
-  }
-  
-  .result {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--secondary-color);
-  }
