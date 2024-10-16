@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { useTheme } from '../components/ThemeContext';
-import ThreeSwitch from '../components/ThreeSwitch';
+import { useTheme } from '../../components/ThemeContext';
+import ThreeSwitch from '../../components/ThreeSwitch';
 import './Valchecker.css';
+import Treadmill from './Treadmill';
 
 function Valchecker() {
   const { theme } = useTheme();
@@ -22,7 +23,7 @@ function Valchecker() {
 
   return (
     <div className={`valchecker ${theme}`}>
-      <div className='top-bar'>
+      <div className='top-bar' id="valchecker#use-it">
         <div className="logo-text">
           <img src="" alt="valcheck.ai" id="logo"/>
         </div>
@@ -30,13 +31,12 @@ function Valchecker() {
           <ThreeSwitch />
         </div>
       </div>
-      <div className='canvas-section'>
-        <canvas ref={canvasRef} width="200" height="200"></canvas>
-        <div className='button-section'>
-          <button onClick={clearCanvas}>Clear</button>
-          <button onClick={recognizeDigit}>Recognize</button>
-        </div>
-        {result && <p className='result'>{result}</p>}
+      <Treadmill />
+      <div className="result">
+
+      </div>
+      <div className="examples" id="valchecker#examples">
+
       </div>
     </div>
   );

@@ -1,17 +1,60 @@
 @import "../index.css";
 
 .footer {
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.9rem;
-    font-family: 'Lato';
-    background-color: var(--light-background-color);
-    color: black;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .dark .footer {
-    box-shadow: 0 -2px 4px rgba(255, 255, 255, 0.1);
-    color: white;
-    background-color: black;
-  }
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: 'Kanit';
+  background-color: var(--light-background-color);
+  color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-content {
+  margin-bottom: 1rem;
+}
+
+.footer-nav {
+  padding-bottom: 10px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-color);
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-social a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--primary-color);
+}
+
+.dark .footer {
+  box-shadow: 0 -2px 4px rgba(255, 255, 255, 0.1);
+  color: white;
+  background-color: black;
+}

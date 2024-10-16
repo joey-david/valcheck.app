@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/home/Home';
-import Valchecker from './pages/Valchecker';
+import Valchecker from './pages/valchecker/Valchecker';
 import About from './pages/About';
 import { ThemeProvider } from './components/ThemeContext';
 import './App.css';

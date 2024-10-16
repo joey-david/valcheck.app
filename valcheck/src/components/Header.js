@@ -67,10 +67,10 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
             <DropdownArrow isOpen={openDropdown === 2} />
           </Link>
           <div className="dropdown-list">
-            <Link to="/valchecker/examples" className="link">
+            <Link to="/valchecker#examples" className="link">
               Examples
             </Link>
-            <Link to="/valchecker/use-it" className="link">
+            <Link to="/valchecker#use-it" className="link">
               Use It
             </Link>
           </div>

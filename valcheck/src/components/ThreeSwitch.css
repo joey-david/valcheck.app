@@ -1,9 +1,8 @@
 .three-switch-toggle {
   display: inline-block;
-  margin: 0px;
   position: relative;
-  width: 378px; /* 252px * 1.5 */
-  height: 36px; /* 36px * 1.5 */
+  width: 378px;
+  height: 36px;
   font-family: Lato, sans-serif;
 }
 
@@ -11,13 +10,10 @@
   width: 100%;
   height: 100%;
   background: #E0E0E0;
-  border-radius: 31px; /* 31.2px * 1.5 */
+  border-radius: 31px;
   overflow: hidden;
-  position: relative;
-  transition: all 0.3s ease;
-  align-self: center;
   display: flex;
-  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .three-switch-toggle-inner label {
@@ -30,19 +26,19 @@
   color: #777;
   transition: all 0.3s ease;
   z-index: 1;
+  cursor: pointer;
 }
 
 .three-switch-toggle-slider {
-  width: 120px; /* 80px * 1.5 */
-  height: 32px; /* 32px * 1.5 */
+  width: 120px;
+  height: 32px;
   background: #fff;
-  border-radius: 46.5px; /* 31px * 1.5 */
-  align-self: center;
+  border-radius: 46.5px;
   position: absolute;
-  left: 2px; /* 2px * 1.5 */
-  top: 2px; /* 2px * 1.5 */
+  left: 2px;
+  top: 2px;
   transition: all 0.3s ease;
-  box-shadow: 0px 0px 7px -3px #111; /* 7px * 1.5 */
+  box-shadow: 0px 0px 7px -3px #111;
 }
 
 .three-switch-toggle input[type="radio"] {
@@ -50,14 +46,11 @@
 }
 
 .three-switch-toggle input[type="radio"]:checked + label {
-  color: #3c3c3c; /* Light theme color */
+  color: #3c3c3c;
+  cursor: pointer;
   font-weight: bold;
-  transform: translateY(-1px); /* -1px * 1.5 */
+  transform: translateY(-1px);
   transition: all 0.2s ease-in-out;
-}
-
-.dark .three-switch-toggle input[type="radio"]:checked + label {
-  color: white; /* Dark theme color */
 }
 
 .three-switch-toggle input[type="radio"]:nth-of-type(1):checked ~ .three-switch-toggle-slider {
@@ -65,11 +58,11 @@
 }
 
 .three-switch-toggle input[type="radio"]:nth-of-type(2):checked ~ .three-switch-toggle-slider {
-  transform: translateX(126px); /* 84px * 1.5 */
+  transform: translateX(126px);
 }
 
 .three-switch-toggle input[type="radio"]:nth-of-type(3):checked ~ .three-switch-toggle-slider {
-  transform: translateX(252px); /* 168px * 1.5 */
+  transform: translateX(252px);
 }
 
 /* Dark theme styles */
@@ -85,6 +78,6 @@
   color: #888888;
 }
 
-.dark-theme .three-switch-toggle input[type="radio"]:checked + label {
-  color: #fff;
+.dark .three-switch-toggle input[type="radio"]:checked + label {
+  color: white;
 }

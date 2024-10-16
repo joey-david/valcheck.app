@@ -3,7 +3,7 @@ import './ThreeSwitch.css';
 import { useTheme } from './ThemeContext.js';
 
 const ThreeSwitch = () => {
-  const [selectedOption, setSelectedOption] = useState('camera');
+  const [selectedOption, setSelectedOption] = useState('draw');
   const { theme } = useTheme();
 
   const handleOptionChange = (option) => {
