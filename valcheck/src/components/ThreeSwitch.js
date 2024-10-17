@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import './ThreeSwitch.css';
 import { useTheme } from './ThemeContext.js';
 
-const ThreeSwitch = () => {
-  const [selectedOption, setSelectedOption] = useState('draw');
+const ThreeSwitch = ({ selectedOption, setSelectedOption }) => {
   const { theme } = useTheme();
 
   const handleOptionChange = (option) => {

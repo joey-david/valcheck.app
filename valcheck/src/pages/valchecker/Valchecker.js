@@ -6,6 +6,7 @@ import Treadmill from './Treadmill';
 
 function Valchecker() {
   const { theme } = useTheme();
+  const [selectedOption, setSelectedOption] = useState('draw');
   const [result, setResult] = useState(null);
   const canvasRef = useRef(null);
 
@@ -28,15 +29,14 @@ function Valchecker() {
           <img src="" alt="valcheck.ai" id="logo"/>
         </div>
         <div className="triple-switch">
-          <ThreeSwitch />
+          <ThreeSwitch selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
         </div>
       </div>
-      <Treadmill />
+      <Treadmill selectedOption={selectedOption} />
       <div className="result">
-
+        {result}
       </div>
       <div className="examples" id="valchecker#examples">
-
       </div>
     </div>
   );
