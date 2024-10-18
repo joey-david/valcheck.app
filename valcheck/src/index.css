@@ -3,7 +3,9 @@
 
 :root {
   --light-background-color: #F5F3F5;
-  --dark-background-color: #1E1E1E; 
+  --dark-background-color: #1E1E1E;
+  --light-background-color-secondary: #1E1E1E;
+  --dark-background-color-secondary: #F5F3F5; 
   --edge-padding: 5vw;
 }
 
@@ -56,4 +58,84 @@ li {
 .dark {
   background-color: var(--background-dark);
   color: var(--text-dark);
+}
+
+/* FANCY BUTTON */  
+
+.main-button {
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-family: Kanit;
+  font-size: 25px;
+  height: 60px;
+  outline: none;
+  position: relative;
+  width: 330px;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-button:hover span {
+  scale: 1.07;
+  transition: all 0.15s ease-in-out;
+}
+
+.dark .main-button {
+  color: black;
+}
+
+.main-button:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 10s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 12px;
+}
+
+.main-button:active {
+  color: #fff;
+}
+
+.dark .main-button:active {
+  color: var(--primary-color);
+}
+
+.main-button:hover:before {
+  opacity: 1;
+}
+
+.main-button:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black; /* Default background for light mode */
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.dark .main-button:after {
+  background: white; /* Background for dark mode */
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
 }

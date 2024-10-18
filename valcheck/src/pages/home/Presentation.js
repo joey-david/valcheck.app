@@ -14,7 +14,9 @@ function Presentation() {
         <p className="home-subtitle">A lightning-fast expression and formula evaluator.</p>
       </div>
       <div className="home-button">
-        <Link to="/valchecker" className="main-button">use valcheck</Link>
+        <Link to="/valchecker" className="main-button">
+          <span>use valcheck</span>
+        </Link>
       </div>
     </div>
   );

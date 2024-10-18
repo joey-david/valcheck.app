@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Camera, Trash2, Upload } from "lucide-react";
+import { Camera, Eraser, Upload, ImagePlus, X } from "lucide-react";
 import { useTheme } from "../../components/ThemeContext";
 import "./Treadmill.css";
 
@@ -8,9 +8,12 @@ const Treadmill = ({ selectedOption }) => {
     const canvasRef = useRef(null);
     const videoRef = useRef(null);
     const fileInputRef = useRef(null);
-    const videoStreamRef = useRef(null); // Add ref for video stream
+    const videoStreamRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
+    const [uploadedFile, setUploadedFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [isDragging, setIsDragging] = useState(false);
 
     // Map options to indices for carousel positioning
     const optionToIndex = {
@@ -141,10 +144,65 @@ const Treadmill = ({ selectedOption }) => {
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
         if (file) {
-            console.log("File selected:", file);
-            // Add your file handling logic here
+            if (file.type.startsWith('image/')) {
+                setUploadedFile(file);
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    setImagePreview(event.target.result);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("Please upload an image file");
+            }
         }
     };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        const file = e.dataTransfer.files?.[0];
+        if (file && file.type.startsWith('image/')) {
+            setUploadedFile(file);
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setImagePreview(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please upload an image file");
+        }
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        setIsDragging(true);
+    };
+
+    const handleDragLeave = (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+    };
+
+    const removeImage = () => {
+        setUploadedFile(null);
+        setImagePreview(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
+    useEffect(() => {
+        const uploadDiv = document.querySelector('.upload-div');
+        if (!uploadDiv) return;
+
+        uploadDiv.addEventListener('dragover', handleDragOver);
+        uploadDiv.addEventListener('drop', handleDrop);
+
+        return () => {
+            uploadDiv.removeEventListener('dragover', handleDragOver);
+            uploadDiv.removeEventListener('drop', handleDrop);
+        };
+    }, []);
 
     return (
         <div className={`treadmill ${theme}`}>
@@ -160,7 +218,7 @@ const Treadmill = ({ selectedOption }) => {
                                 className="drawing-canvas"
                             />
                             <button className="action-button" onClick={clearCanvas}>
-                                <Trash2 size={18} />
+                                <Eraser size={18} />
                                 Clear Canvas
                             </button>
                         </div>
@@ -181,18 +239,66 @@ const Treadmill = ({ selectedOption }) => {
                     </div>
 
                     <div className="carousel-section">
-                        <div className="content-container">
+                        <div 
+                            className={`content-container upload-div ${isDragging ? 'dragging' : ''}`}
+                            onDragOver={handleDragOver}
+                            onDrop={handleDrop}
+                            onDragLeave={handleDragLeave}
+                        >
                             <input
                                 type="file"
                                 id="fileInput"
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
+                                accept="image/*"
                                 hidden
                             />
-                            <label htmlFor="fileInput" className="upload-label">
-                                <Upload size={24} />
-                                <span>Choose a file or drag it here</span>
-                            </label>
+                            
+                            {!imagePreview ? (
+                                <label 
+                                    htmlFor="fileInput" 
+                                    className="upload-label"
+                                >
+                                    <Upload 
+                                        size={32} 
+                                        className="upload-icon" 
+                                        strokeWidth={1.5} 
+                                    />
+                                    <div className="upload-text">
+                                        <span className="primary-text">
+                                            Choose a file or drag it here
+                                        </span>
+                                        <span className="secondary-text">
+                                            Supports: JPG, PNG, GIF
+                                        </span>
+                                    </div>
+                                </label>
+                            ) : (
+                                <div className="preview-container">
+                                    <div className="preview-header">
+                                        <span className="filename">
+                                            {uploadedFile?.name}
+                                        </span>
+                                        <button 
+                                            className="remove-button"
+                                            onClick={removeImage}
+                                            aria-label="Remove image"
+                                        >
+                                            <X size={20} />
+                                        </button>
+                                    </div>
+                                    <div className="image-preview">
+                                        <img src={imagePreview} alt="Preview" />
+                                    </div>
+                                    <label 
+                                        htmlFor="fileInput" 
+                                        className="replace-button"
+                                    >
+                                        <ImagePlus size={18} />
+                                        Replace Image
+                                    </label>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
