@@ -1,6 +1,7 @@
 import React from 'react';
 import './ThreeSwitch.css';
 import { useTheme } from './ThemeContext.js';
+import { PenTool, Camera, Upload } from 'lucide-react';
 
 const ThreeSwitch = ({ selectedOption, setSelectedOption }) => {
   const { theme } = useTheme();
@@ -19,7 +20,10 @@ const ThreeSwitch = ({ selectedOption, setSelectedOption }) => {
           checked={selectedOption === 'draw'}
           onChange={() => handleOptionChange('draw')}
         />
-        <label htmlFor="option1">Draw</label>
+        <label htmlFor="option1">
+          <PenTool className="icon" />
+          Canvas
+        </label>
         
         <input
           type="radio"
@@ -28,7 +32,10 @@ const ThreeSwitch = ({ selectedOption, setSelectedOption }) => {
           checked={selectedOption === 'camera'}
           onChange={() => handleOptionChange('camera')}
         />
-        <label htmlFor="option2">Take a picture</label>
+        <label htmlFor="option2">
+          <Camera className="icon" />
+          Camera
+        </label>
         
         <input
           type="radio"
@@ -37,7 +44,10 @@ const ThreeSwitch = ({ selectedOption, setSelectedOption }) => {
           checked={selectedOption === 'upload'}
           onChange={() => handleOptionChange('upload')}
         />
-        <label htmlFor="option3">Upload</label>
+        <label htmlFor="option3">
+          <Upload className="icon" />
+          File upload
+        </label>
         
         <div className="three-switch-toggle-slider"></div>
       </div>

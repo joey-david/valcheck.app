@@ -65,6 +65,19 @@
   transform: translateX(252px);
 }
 
+/* Icon styles */
+
+.three-switch-toggle-inner label .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.icon {
+  height: 17px;
+}
+
 /* Dark theme styles */
 .dark .three-switch-toggle-inner {
   background: #151515;

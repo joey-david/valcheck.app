@@ -1,130 +1,93 @@
 .treadmill {
+    height: 100%;
+    padding: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Theme Variables */
+.treadmill.dark {
+    --bg-color: #1a1a1a;
+    --content-bg: #2a2a2a;
+    --text-color: #ffffff;
+    --border-color: #444;
+    --button-hover-bg: #3a3a3a;
+}
+
+.treadmill:not(.dark) {
+    --bg-color: #f5f5f5;
+    --content-bg: #ffffff;
+    --text-color: #333333;
+    --border-color: #ddd;
+    --button-hover-bg: #e5e5e5;
+}
+
+.treadmill {
+    background: var(--bg-color);
+}
+
+/* Carousel Structure */
+.carousel-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     position: relative;
+}
+
+.carousel-inner {
     display: flex;
-    flex-direction: column;
     height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background: var(--background-color);
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
 }
 
-.treadmill-viewport {
+.carousel-section {
+    min-width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+/* Content Containers */
+.content-container {
+    background: var(--content-bg);
+    height: 100%;
+    border-radius: 12px;
     position: relative;
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    min-height: 0; /* Prevent flex item overflow */
-}
-
-.treadmill-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.treadmill-section {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-    transform: translateX(100%);
-    visibility: hidden;
-    transition: transform 0.5s ease-in-out, visibility 0s linear 0.5s;
-    will-change: transform;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.treadmill-section.active {
-    transform: translateX(0);
-    visibility: visible;
-    transition: transform 0.5s ease-in-out, visibility 0s linear;
-    z-index: 1;
-}
-
-.treadmill-section.prev {
-    transform: translateX(-100%);
-}
-
-.treadmill-section.next {
-    transform: translateX(100%);
-}
-
-/* Container styles */
-.canvas-container,
-.video-container,
-.file-upload-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-width: 1280px;
-    max-height: 720px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    background: var(--container-background);
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Canvas styles */
+/* Drawing Canvas */
 .drawing-canvas {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
     background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     touch-action: none;
+    cursor: crosshair;
 }
 
-/* Video styles */
-video {
+/* Camera Feed */
+.camera-feed {
     width: 100%;
     height: 100%;
+
     border-radius: 8px;
     background: #000;
     object-fit: cover;
 }
 
-/* File upload styles */
-.file-upload-label {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed var(--border-color);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: var(--upload-background);
-}
-
-.file-upload-label:hover {
-    border-color: var(--border-hover-color);
-    background: var(--upload-hover-background);
-}
-
-/* Button styles */
-.clear-button,
-.camera-button {
+/* Action Buttons */
+.action-button {
     position: absolute;
     bottom: 1.5rem;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     border: none;
-    background: var(--button-background);
-    color: var(--button-text);
+    background: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -135,74 +98,62 @@ video {
     z-index: 2;
 }
 
-.clear-button:hover,
-.camera-button:hover {
-    background: var(--button-hover-background);
+.action-button:hover {
+    background: var(--button-hover-bg);
+    transform: translateY(-2px);
 }
 
-/* Dark theme adjustments */
-.treadmill.dark {
-    --background-color: #1a1a1a;
-    --container-background: #2a2a2a;
-    --border-color: #444;
-    --border-hover-color: #666;
-    --button-background: #333;
-    --button-hover-background: #444;
-    --button-text: #fff;
-    --upload-background: #2a2a2a;
-    --upload-hover-background: #333;
+.action-button:active {
+    transform: translateY(0);
 }
 
-/* Light theme variables */
-.treadmill:not(.dark) {
-    --background-color: #f5f5f5;
-    --container-background: #ffffff;
-    --border-color: #ddd;
-    --border-hover-color: #999;
-    --button-background: #f0f0f0;
-    --button-hover-background: #e0e0e0;
-    --button-text: #333;
-    --upload-background: #ffffff;
-    --upload-hover-background: #f5f5f5;
+/* Upload Section */
+.upload-label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    gap: 1rem;
 }
 
-/* Responsive adjustments */
+.upload-label:hover {
+    border-color: var(--text-color);
+    background: var(--bg-color);
+}
+
+.upload-label span {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .treadmill-section {
-        padding: 10px;
-    }
-
-    .canvas-container,
-    .video-container,
-    .file-upload-container {
+    .treadmill {
         padding: 0.5rem;
     }
 
-    .clear-button,
-    .camera-button {
+    .carousel-section {
+        padding: 0.5rem;
+    }
+
+    .content-container {
+        padding: 0.5rem;
+    }
+
+    .action-button {
         bottom: 1rem;
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
     }
-}
 
-/* Ensure proper aspect ratio */
-@media (min-aspect-ratio: 16/9) {
-    .canvas-container,
-    .video-container,
-    .file-upload-container {
-        height: 90vh;
-        width: auto;
-        aspect-ratio: 16/9;
-    }
-}
-
-@media (max-aspect-ratio: 16/9) {
-    .canvas-container,
-    .video-container,
-    .file-upload-container {
-        width: 90vw;
-        height: auto;
-        aspect-ratio: 16/9;
+    .upload-label span {
+        font-size: 0.9rem;
     }
 }
