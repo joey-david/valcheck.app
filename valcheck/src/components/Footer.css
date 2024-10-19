@@ -6,8 +6,13 @@
   font-size: 0.9rem;
   font-family: 'Kanit';
   background-color: var(--light-background-color);
-  color: black;
+  color: rgb(95, 95, 95);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: large;
 }
 
 .footer-content {
@@ -16,6 +21,7 @@
 
 .footer-nav {
   padding-bottom: 10px;
+  font-size: large;
 }
 
 .footer-nav ul {
@@ -34,7 +40,11 @@
 }
 
 .footer-nav a:hover {
-  color: var(--primary-color);
+  color: black;
+}
+
+.dark .footer-nav a:hover {
+  color: white;
 }
 
 .footer-social {
@@ -44,17 +54,24 @@
 }
 
 .footer-social a {
+  width: 3rem;
   text-decoration: none;
   color: inherit;
   transition: color 0.3s ease;
 }
 
+.social-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
 .footer-social a:hover {
-  color: var(--primary-color);
+  color: black;
 }
 
 .dark .footer {
   box-shadow: 0 -2px 4px rgba(255, 255, 255, 0.1);
-  color: white;
+  color: rgb(107, 107, 107);
   background-color: black;
 }
+

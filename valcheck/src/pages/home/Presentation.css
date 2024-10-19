@@ -1,3 +1,5 @@
+@import "../../index.css";
+
 .presentation {
     display: flex;
     background-color: var(--light-background-color);
@@ -41,4 +43,9 @@
     align-items: center;
     height: inherit;
     width: 45vw;
+}
+
+.presentation .main-button:hover span {
+    scale: 1.04;
+    transition: all 0.15s ease-in-out;
 }

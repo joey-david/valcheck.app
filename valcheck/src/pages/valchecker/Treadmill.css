@@ -2,7 +2,7 @@
 
 .treadmill {
     height: 100%;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     transition: background-color 0.3s ease;
 }
 
@@ -76,7 +76,7 @@
 /* Action Buttons */
 .action-button {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 1rem;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     border: none;
@@ -98,6 +98,10 @@
 
 .action-button:active {
     transform: translateY(0);
+}
+
+.clear-canvas-button {
+    bottom: 0;
 }
 
 /* Upload Section Specific Styles */

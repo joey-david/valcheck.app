@@ -10,6 +10,7 @@ function Valchecker() {
   const [selectedOption, setSelectedOption] = useState('draw');
   const [result, setResult] = useState(null);
   const canvasRef = useRef(null);
+
   const processImage = () => {
     return new Promise((resolve, reject) => {
       const canvas = canvasRef.current;
@@ -34,12 +35,6 @@ function Valchecker() {
     });
   };
 
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  };
-
   const recognizeDigit = () => {
     // Here you would implement the logic to send the canvas data to your Flask backend
     // and receive the recognition resul
@@ -49,15 +44,17 @@ function Valchecker() {
   return (
     <div className={`valchecker ${theme}`}>
       <div className='treadmill-aligner'>
-        <div className="triple-switch">
-          <ThreeSwitch selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+        <div className="top-bar">
+          <div className="triple-switch">
+            <ThreeSwitch selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+          </div>
+          <div className="valcheck-button">
+            <button onClick={processImage} className="main-button valcheck-button">
+              <span>Process image &#x2192;</span>
+            </button>
+          </div>
         </div>
         <Treadmill selectedOption={selectedOption} />
-        <div className="valcheck-button">
-          <button onClick={processImage} className="main-button valcheck-button">
-            <span>Analyze</span>
-          </button>
-        </div>
       </div>
       <div className="result">
         {result}

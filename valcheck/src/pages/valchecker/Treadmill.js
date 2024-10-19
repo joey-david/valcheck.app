@@ -217,7 +217,7 @@ const Treadmill = ({ selectedOption }) => {
                                 ref={canvasRef}
                                 className="drawing-canvas"
                             />
-                            <button className="action-button" onClick={clearCanvas}>
+                            <button className="action-button clear-canvas-button" onClick={clearCanvas}>
                                 <Eraser size={18} />
                                 Clear Canvas
                             </button>

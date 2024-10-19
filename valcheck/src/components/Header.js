@@ -42,7 +42,7 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
           onMouseLeave={handleDropdownLeave}
         >
           <a href="/home#how-it-works" className="dropdown-link">
-            How it works
+            Functionality
             <DropdownArrow isOpen={openDropdown === 1} />
           </a>
           <div className="dropdown-list">
@@ -63,15 +63,15 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
           onMouseLeave={handleDropdownLeave}
         >
           <Link to="/valchecker" className="dropdown-link">
-            How to use it
+            Usage
             <DropdownArrow isOpen={openDropdown === 2} />
           </Link>
           <div className="dropdown-list">
             <Link to="/valchecker#examples" className="link">
-              Examples
+              Try it yourself
             </Link>
             <Link to="/valchecker#use-it" className="link">
-              Use It
+              Usecase examples
             </Link>
           </div>
         </div>
@@ -81,7 +81,7 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
           onMouseLeave={handleDropdownLeave}
         >
           <Link to="/about" className="dropdown-link">
-            Who made it
+            About
             <DropdownArrow isOpen={openDropdown === 3} />
           </Link>
           <div className="dropdown-list">
@@ -89,7 +89,10 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
               The Developer
             </Link>
             <Link to="/about/more-valcheck" className="link">
-              More about valcheck.ai
+              Privacy Policy
+            </Link>
+            <Link to="/about/more-valcheck" className="link">
+              Terms of Service
             </Link>
           </div>
         </div>
