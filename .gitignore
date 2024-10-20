@@ -1,7 +1,7 @@
 node_modules/
-venv/
 .venv/
 .DS_Store
 *.log
 *.pyc
 __pycache__/
+temp/

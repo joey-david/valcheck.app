@@ -29,10 +29,8 @@ function Header({ isDropdownOpen, setIsDropdownOpen }) {
         <img src="" alt="valcheck.ai" id="logo"/>
       </div>
       <div className="links-div">
-        <div
-          className="dropdown" id="home-dropdown"
-        >
-          <a href="/home" className="dropdown-link">
+        <div className="dropdown" id="home-dropdown">
+          <a href="/home" className="dropdown-link" id="home">
             Home
           </a>
         </div>

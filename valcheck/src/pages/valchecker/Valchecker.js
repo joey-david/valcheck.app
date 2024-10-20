@@ -13,10 +13,6 @@ function Valchecker() {
 
   const processImage = async () => {
     try {
-      // Log the current state to help with debugging
-      console.log("Current option:", selectedOption);
-      console.log("Treadmill ref:", treadmillRef.current);
-
       const imageData = await treadmillRef.current?.getImageData(selectedOption);
       
       if (!imageData) {
@@ -25,16 +21,38 @@ function Valchecker() {
         return;
       }
 
-      console.log("Successfully retrieved image data");
-      console.log("Image data:", imageData);
-      // Here you would send the image data to your backend
-      // For now, just show we got the data successfully
+      const response = await fetch('/user-input', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imageData }),
+        timeout: 10000,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to post image data');
+      }
+
+      const responseData = await response.json();
+      console.log("Response from server:", responseData);
       setResult("Successfully captured image from " + selectedOption);
       
     } catch (error) {
-      console.error("Error processing image:", error);
       setResult("Error processing image: " + error.message);
     }
+  };
+
+  const scrollToResult = () => {
+    const resultSection = document.getElementById('result-section');
+    if (resultSection) {
+      resultSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleButtonClick = async () => {
+    scrollToResult();
+    await processImage();
   };
 
   return (
@@ -49,7 +67,7 @@ function Valchecker() {
           </div>
           <div className="valcheck-button">
             <button 
-              onClick={processImage} 
+              onClick={handleButtonClick} 
               className="main-button valcheck-button"
             >
               <span>Process image &#x2192;</span>
@@ -61,7 +79,8 @@ function Valchecker() {
           selectedOption={selectedOption} 
         />
       </div>
-      <div className="result">
+      <div className="result" id="result-section">
+        <h2>Result</h2>
         {result}
       </div>
       <div className="examples" id="valchecker#examples">

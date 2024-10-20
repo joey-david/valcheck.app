@@ -32,6 +32,11 @@ main {
   /* padding: 2rem; */
 }
 
+/* Counteract the header covering the content */
+[id] {
+  scroll-margin-top: 80px;
+}
+
 button {
   cursor: pointer;
   padding: 0.5rem 1rem;
