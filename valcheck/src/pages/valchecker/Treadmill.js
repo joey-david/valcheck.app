@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
 import { Camera, Eraser, Upload, ImagePlus, X } from "lucide-react";
 import { useTheme } from "../../components/ThemeContext";
 import "./Treadmill.css";
 
-const Treadmill = ({ selectedOption }) => {
+const Treadmill = forwardRef(({ selectedOption }, ref) => {
     const { theme } = useTheme();
     const canvasRef = useRef(null);
     const videoRef = useRef(null);
@@ -20,6 +20,58 @@ const Treadmill = ({ selectedOption }) => {
         'draw': 0,
         'camera': 1,
         'upload': 2
+    };
+
+    // Expose methods to parent component
+    useImperativeHandle(ref, () => ({
+        getImageData: async (currentOption) => {
+            console.log("Getting image data for option:", currentOption);
+            
+            switch (currentOption) {
+                case 'draw':
+                    return getDrawingData();
+                case 'camera':
+                    return getCameraSnapshot();
+                case 'upload':
+                    return getUploadedImage();
+                default:
+                    console.error("Unknown option:", currentOption);
+                    return null;
+            }
+        }
+    }));
+
+    // Get drawing from canvas
+    const getDrawingData = () => {
+        if (!canvasRef.current) {
+            console.error("Canvas ref is null");
+            return null;
+        }
+        return canvasRef.current.toDataURL('image/png');
+    };
+
+    // Get snapshot from camera
+    const getCameraSnapshot = () => {
+        if (!videoRef.current || !videoRef.current.srcObject) {
+            console.error("Video stream not available");
+            return null;
+        }
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = videoRef.current.videoWidth;
+        canvas.height = videoRef.current.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(videoRef.current, 0, 0);
+        return canvas.toDataURL('image/png');
+    };
+
+    // Get uploaded image
+    const getUploadedImage = () => {
+        if (!imagePreview) {
+            console.error("No image uploaded");
+            return null;
+        }
+        return imagePreview;
     };
 
     // Initialize canvas
@@ -42,7 +94,7 @@ const Treadmill = ({ selectedOption }) => {
         };
     }, []);
 
-    // Handle drawing functionality
+    // Drawing functionality
     const getCoordinates = (e) => {
         if (!canvasRef.current) return { x: 0, y: 0 };
         
@@ -99,18 +151,7 @@ const Treadmill = ({ selectedOption }) => {
             canvas.removeEventListener('mouseup', stopDrawing);
             canvas.removeEventListener('mouseout', stopDrawing);
         };
-    }, [isDrawing, lastPos, theme]);
-
-    // Clean up video stream when component unmounts or camera section is not active
-    useEffect(() => {
-        return () => {
-            if (videoStreamRef.current) {
-                const tracks = videoStreamRef.current.getTracks();
-                tracks.forEach(track => track.stop());
-                videoStreamRef.current = null;
-            }
-        };
-    }, [selectedOption]);
+    }, [isDrawing, lastPos]);
 
     const clearCanvas = () => {
         if (!canvasRef.current) return;
@@ -122,12 +163,6 @@ const Treadmill = ({ selectedOption }) => {
         try {
             if (!navigator.mediaDevices?.getUserMedia) {
                 throw new Error('Camera access not supported');
-            }
-
-            // Stop any existing stream
-            if (videoStreamRef.current) {
-                const tracks = videoStreamRef.current.getTracks();
-                tracks.forEach(track => track.stop());
             }
 
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -183,13 +218,21 @@ const Treadmill = ({ selectedOption }) => {
         setIsDragging(false);
     };
 
-    const removeImage = () => {
-        setUploadedFile(null);
-        setImagePreview(null);
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
-        }
-    };
+    // Add drag and drop event listeners
+    useEffect(() => {
+        const uploadDiv = document.querySelector('.upload-div');
+        if (!uploadDiv) return;
+
+        uploadDiv.addEventListener('dragover', handleDragOver);
+        uploadDiv.addEventListener('dragleave', handleDragLeave);
+        uploadDiv.addEventListener('drop', handleDrop);
+
+        return () => {
+            uploadDiv.removeEventListener('dragover', handleDragOver);
+            uploadDiv.removeEventListener('dragleave', handleDragLeave);
+            uploadDiv.removeEventListener('drop', handleDrop);
+        };
+    }, []);
 
     useEffect(() => {
         const uploadDiv = document.querySelector('.upload-div');
@@ -211,6 +254,7 @@ const Treadmill = ({ selectedOption }) => {
                     className="carousel-inner" 
                     style={{ transform: `translateX(-${optionToIndex[selectedOption] * 100}%)` }}
                 >
+                    {/* Drawing Section */}
                     <div className="carousel-section">
                         <div className="content-container">
                             <canvas 
@@ -224,12 +268,13 @@ const Treadmill = ({ selectedOption }) => {
                         </div>
                     </div>
 
+                    {/* Camera Section */}
                     <div className="carousel-section">
                         <div className="content-container">
                             <video 
                                 ref={videoRef} 
                                 className="camera-feed"
-                                playsInline // Better mobile support
+                                playsInline
                             />
                             <button className="action-button" onClick={openCamera}>
                                 <Camera size={18} />
@@ -238,16 +283,17 @@ const Treadmill = ({ selectedOption }) => {
                         </div>
                     </div>
 
+                    {/* Upload Section */}
                     <div className="carousel-section">
                         <div 
                             className={`content-container upload-div ${isDragging ? 'dragging' : ''}`}
                             onDragOver={handleDragOver}
-                            onDrop={handleDrop}
                             onDragLeave={handleDragLeave}
+                            onDrop={handleDrop}
                         >
                             <input
                                 type="file"
-                                id="fileInput"
+                                id="fileInput"  // Added id to match htmlFor
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
                                 accept="image/*"
@@ -281,7 +327,13 @@ const Treadmill = ({ selectedOption }) => {
                                         </span>
                                         <button 
                                             className="remove-button"
-                                            onClick={removeImage}
+                                            onClick={() => {
+                                                setUploadedFile(null);
+                                                setImagePreview(null);
+                                                if (fileInputRef.current) {
+                                                    fileInputRef.current.value = '';
+                                                }
+                                            }}
                                             aria-label="Remove image"
                                         >
                                             <X size={20} />
@@ -305,6 +357,6 @@ const Treadmill = ({ selectedOption }) => {
             </div>
         </div>
     );
-};
+});
 
 export default Treadmill;

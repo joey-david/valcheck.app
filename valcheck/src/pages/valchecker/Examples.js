@@ -16,7 +16,7 @@ function Examples() {
                         <h3>Using the three-switch</h3>
                         <p></p>
                         <p>Choose your input type by clicking the appropriate section.</p>
-                        <p>You can either draw a mathematical expression, take a picture using your webcam, or upload it directly from your local files</p>
+                        <p>You can either draw a mathematical expression, take a picture using your webcam, or upload directly from your local files.</p>
                     </div>
                     <img src="./gif/three-switch.gif" alt="Three-switch demonstration" className="three-switch-gif" />
                 </section>

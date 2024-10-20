@@ -9,36 +9,32 @@ function Valchecker() {
   const { theme } = useTheme();
   const [selectedOption, setSelectedOption] = useState('draw');
   const [result, setResult] = useState(null);
-  const canvasRef = useRef(null);
+  const treadmillRef = useRef();
 
-  const processImage = () => {
-    return new Promise((resolve, reject) => {
-      const canvas = canvasRef.current;
-      canvas.toBlob((blob) => {
-        const formData = new FormData();
-        formData.append('image', blob);
+  const processImage = async () => {
+    try {
+      // Log the current state to help with debugging
+      console.log("Current option:", selectedOption);
+      console.log("Treadmill ref:", treadmillRef.current);
 
-        fetch('http://localhost:5000/recognize', {
-          method: 'POST',
-          body: formData,
-        })
-          .then(response => response.json())
-          .then(data => {
-            setResult(`Recognized digit: ${data.digit}`);
-            resolve(data);
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            reject(error);
-          });
-      }, 'image/png');
-    });
-  };
+      const imageData = await treadmillRef.current?.getImageData(selectedOption);
+      
+      if (!imageData) {
+        console.error("No image data received from treadmill");
+        setResult("No image data available");
+        return;
+      }
 
-  const recognizeDigit = () => {
-    // Here you would implement the logic to send the canvas data to your Flask backend
-    // and receive the recognition resul
-    setResult("Recognized digit: 5"); // Placeholder result
+      console.log("Successfully retrieved image data");
+      console.log("Image data:", imageData);
+      // Here you would send the image data to your backend
+      // For now, just show we got the data successfully
+      setResult("Successfully captured image from " + selectedOption);
+      
+    } catch (error) {
+      console.error("Error processing image:", error);
+      setResult("Error processing image: " + error.message);
+    }
   };
 
   return (
@@ -46,15 +42,24 @@ function Valchecker() {
       <div className='treadmill-aligner'>
         <div className="top-bar">
           <div className="triple-switch">
-            <ThreeSwitch selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+            <ThreeSwitch 
+              selectedOption={selectedOption} 
+              setSelectedOption={setSelectedOption} 
+            />
           </div>
           <div className="valcheck-button">
-            <button onClick={processImage} className="main-button valcheck-button">
+            <button 
+              onClick={processImage} 
+              className="main-button valcheck-button"
+            >
               <span>Process image &#x2192;</span>
             </button>
           </div>
         </div>
-        <Treadmill selectedOption={selectedOption} />
+        <Treadmill 
+          ref={treadmillRef}
+          selectedOption={selectedOption} 
+        />
       </div>
       <div className="result">
         {result}
