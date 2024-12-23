@@ -1,5 +1,7 @@
 Flask
 Pillow
 sympy
-jsonlib==1.6.1
+jsonlib
 torch==2.5.1
+numpy==2.2.1
+opencv-python==4.10.0.84
