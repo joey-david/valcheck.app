@@ -61,14 +61,3 @@
   height: 36px;
   font-size: 18px;
 }
-
-.valcheck-button.main-button:after {
-  background: #3c3c3c;
-}
-
-.dark .valcheck-button.main-button:after {
-  background: #888888;
-}
-
-.result {
-}

@@ -1,0 +1,5 @@
+Flask
+Pillow
+sympy
+jsonlib==1.6.1
+torch==2.5.1
